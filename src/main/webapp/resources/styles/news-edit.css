@@ -1,0 +1,42 @@
+form {
+	font-size: 120%;
+}
+
+label[for] {
+    display: block;    
+}
+
+label[for] ~ label[for] {
+	margin-top: 10px;
+}
+
+input, textarea {
+	width: 100%;
+	font-family: inherit;
+	font-size: 110%;
+	padding: .25em .5em;
+	box-sizing: border-box;
+}
+
+input:focus, textarea:focus {
+    background-color: #FFD;
+}
+
+input:invalid, textarea:invalid {
+    border: 3px solid red;
+}
+
+button {
+	float: right;
+	border: 0;
+    padding: .5em 1em;
+    background-color: rgb(220, 150, 0);
+    color: #FFF;
+    font-family: inherit;
+    font-size: inherit;
+    margin-top: 1em;
+}
+
+button:hover, button:focus {
+    background-color: rgb(250, 190, 0);
+}

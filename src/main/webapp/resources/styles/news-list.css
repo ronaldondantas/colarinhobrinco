@@ -1,0 +1,73 @@
+.news-headline {
+	height: 200px;
+}
+
+.news-headline p {
+	line-height: 1.5;	
+}
+
+.news-headline ~ .news-headline {
+	border-top: 1px solid rgb(220, 150, 0);
+	padding-top: 25px;
+}
+
+.news-headline-title {
+	font-size: 30px;
+	padding: 0 0;
+}
+
+.news-headline-title a {
+	text-decoration: none;
+	color: #CCC;
+}
+
+.news-headline-image {
+	height: 150px;
+}
+
+.news-headline-time {
+	display: block;
+}
+			
+.odd .news-headline-image {
+	float: right;
+	margin-left: 40px;
+}
+
+.even .news-headline-image {
+	float: left;
+	margin-right: 40px;
+}
+
+.odd .news-headline-title {
+	float: left;	
+}
+
+.even .news-headline-title {
+	float: right;
+}
+
+.odd .news-headline-time {
+	clear: left;
+	float: left;
+	padding-top: 5px;	
+}
+
+.even .news-headline-time {
+	clear: right;
+	float: right;
+	padding-top: 5px;	
+}
+
+.news-headline p {
+	text-align: justify;
+	padding-top: 15px;
+}		
+
+.odd p {
+	clear: left;
+}
+
+.even p {
+	clear: right;
+}	

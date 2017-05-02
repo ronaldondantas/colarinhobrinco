@@ -1,0 +1,75 @@
+body {
+	background-color: #000;
+	color: #CCC;
+	font-family: serif;
+}
+
+#site-header {
+	background-color: rgb(74, 103, 138);
+	border-bottom: 5px solid #CCC;	
+}
+
+#site-logo {
+	float: right;
+}
+
+#site-name {
+	float: right;
+	margin-top: 15px;
+	color: #FFF;
+	font-size: 30px;
+	text-transform: uppercase;	
+}
+
+#page-title {
+	padding-left: 10px;
+	font-size: 60px;	
+	color: #FFF;	
+}
+
+#site-navbar {
+	float: left;
+	width: 15%;			
+}
+
+#site-navbar li {
+	text-align: center;
+	padding: 5px 20px;
+	margin: 5px;
+	background-color: rgb(220, 150, 0);
+}
+
+#site-navbar li:hover, li:focus {
+    background-color: rgb(250, 190, 0);
+}
+
+#site-navbar a {
+	color: #FFF;	
+	font-family: serif;	
+	font-size: 1.5em;	
+	text-decoration: none;
+}
+
+#site-content {
+	float: left;
+	width: 80%;
+	margin-left: 30px;	
+	padding-top: 20px;
+	padding-bottom: 40px;
+}
+
+#site-footer {
+	text-align: center;
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+	background-color: rgb(74, 103, 138);
+	color: #FFF;
+	font-size: px;
+	padding: 5px;
+	border-top: 5px solid #CCC;
+}
+
+strong {
+	font-weight: bold;
+}
