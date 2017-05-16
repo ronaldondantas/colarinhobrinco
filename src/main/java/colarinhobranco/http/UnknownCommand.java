@@ -14,6 +14,11 @@ import javax.servlet.ServletException;
  */
 public class UnknownCommand extends FrontCommand {
 
+    
+    public UnknownCommand(){
+        this.target = "404";
+    }
+    
     /**
      *
      * @throws ServletException
@@ -21,6 +26,6 @@ public class UnknownCommand extends FrontCommand {
      */
     @Override
     public void process() throws ServletException, IOException {
-        //forward("404");
+        //
     }
 }

@@ -10,19 +10,18 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-//import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.Part;
 
 import colarinhobranco.dao.NewsDao;
 import colarinhobranco.daoimpl.NewsDaoImpl;
+import colarinhobranco.http.Dispatcher;
 import colarinhobranco.model.News;
-//import javax.servlet.ServletContext;
-//import javax.servlet.http.HttpServletRequest;
+import java.util.Collection;
+import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 
-//@SuppressWarnings("serial")
-
+@SuppressWarnings("serial")
 @MultipartConfig
 public class SaveServlet extends FrontCommand {
 	
@@ -31,59 +30,37 @@ public class SaveServlet extends FrontCommand {
 	private SimpleDateFormat dateParser = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
 	private String imagesFolder; 
 	
-        public SaveServlet(){
+        @Override
+	public void init(Map requestContextMap, Dispatcher dispatcher){
+            super.init(requestContextMap, dispatcher);
             this.target = "news/show";
-        }
-        
-//        @Override
-//	public void init(ServletContext servletContext,
-//      HttpServletRequest servletRequest,
-//      HttpServletResponse servletResponse){
-//		 super.init(servletContext, servletRequest, servletResponse);
-//		setImagesFolder(context.getInitParameter("images-folder"));
-//		
-//	}	
+            this.imagesFolder = this.dispatcher.context.getInitParameter("images-folder");
+	}	
 	
 	@Override
 	public void process() throws IOException{
-		//RequestDispatcher dispatcher = map.get
-		//mapdispatcher.request.setCharacterEncoding("UTF-8");
+            
+            String[] title = (String[]) map.get("title");
+            String[] headlineContent = (String[]) map.get("headline-content");
+            String[] content = (String[]) map.get("content");
+            Collection<Part> partes = (Collection<Part>) map.get("partes");
+            Part headlineImage = (Part) partes.toArray()[4];
+
+            Date date = null;
 		
-		String[] title = (String[]) map.get("title");
-		String[] headlineContent = (String[]) map.get("headline-content");
-		String[] content = (String[]) map.get("content");
-                //String[] strHeadlineImage = (String[]);
-		Part headlineImage = (Part) map.get("headline-image");
-		
-		Date date = null;
-		
-		try {
-                    String[] aData = (String[])map.get("date");
-                    date = dateParser.parse(aData[0]);
-		} catch (ParseException pe) {
-			this.dispatcher.response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);			
-		}
-                
-                System.out.println(title[0]);
-                System.out.println(date);
-                System.out.println(headlineContent[0]);
-                System.out.println(headlineImage.getSubmittedFileName());
-                System.out.println(content[0]);
-		
-                
-                
-		News news = new News(title[0], date, headlineContent[0], headlineImage.getSubmittedFileName(), content[0]);
-		
-		if (newsDao.save(news) != null) {
-			saveHeadlineImage(headlineImage, news.getId());
-		}
-		
-		this.dispatcher.request.setAttribute("news", news);
-		
-		//request.getRequestDispatcher("/pages/news/show.jsp").forward(request, response);
-                //forward();
-		
-		//request.getRequestDispatcher("/pages/news/show.jsp").forward(request, response);			
+            try {
+                String[] aData = (String[])map.get("date");
+                date = dateParser.parse(aData[0]);
+            } catch (ParseException pe) {
+                    this.dispatcher.response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);			
+            }
+             
+            News news = new News(title[0], date, headlineContent[0], headlineImage.getSubmittedFileName(), content[0]);
+            if (newsDao.save(news) != null) {
+                saveHeadlineImage(headlineImage, news.getId());
+            }
+
+            this.dispatcher.request.setAttribute("news", news);			
 				
 	}
 	

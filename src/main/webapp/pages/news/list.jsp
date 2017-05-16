@@ -34,7 +34,7 @@
 							<c:url value='/news/show'>
 								<c:param name='newsId' value='${item.id}' />
 							</c:url>">
-							<img src="${pageContext.request.contextPath}/image?newsId=${item.id}&imageFileName=${item.headlineImage}"
+							<img src="${pageContext.request.contextPath}/front?command=Image&util=true&newsId=${item.id}&imageFileName=${item.headlineImage}"
 								class="news-headline-image" >
 						</a>
 						

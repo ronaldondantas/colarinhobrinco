@@ -10,7 +10,7 @@ import java.util.Map;
 import javax.servlet.ServletException;
 
 /**
- * nao usado, deve ser removido do projeto
+ * 
  * @author Neo Figueiredo
  */
 public abstract class FrontCommand {

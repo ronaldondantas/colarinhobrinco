@@ -18,7 +18,7 @@
 			<div id="site-content">
 				<article class="news">
 					<h1 class="title">${news.title}</h1>
-					<img src="${pageContext.request.contextPath}/image?newsId=${news.id}&imageFileName=${news.headlineImage}"
+					<img src="${pageContext.request.contextPath}/front?command=Image&util=true&newsId=${news.id}&imageFileName=${news.headlineImage}"
 						alt="Eike Batista deixa presídio Bangu">
 					<div class="news-text">
 						<pre>${news.content}</pre>

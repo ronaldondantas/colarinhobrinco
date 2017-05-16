@@ -17,13 +17,13 @@ import javax.servlet.ServletException;
  * @author Neo Figueiredo
  */
 public class ApplicationControllerImp implements ApplicationController {
+    
     private FrontCommand controller;
     public Map requestContextMap;
     public Dispatcher dispatcher;
 
     ApplicationControllerImp(Map requestContextMap, Dispatcher dispatcher) {
        this.requestContextMap = requestContextMap;
-       System.out.println(dispatcher.context);
        this.dispatcher = dispatcher;
     }
     

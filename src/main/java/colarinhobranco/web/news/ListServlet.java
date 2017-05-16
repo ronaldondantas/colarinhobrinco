@@ -6,8 +6,6 @@ import colarinhobranco.daoimpl.NewsDaoImpl;
 import java.io.IOException;
 import javax.servlet.ServletException;
 
-//@SuppressWarnings("serial")
-//@WebServlet(urlPatterns="/news/list")
 public class ListServlet extends FrontCommand {
 
     private NewsDao newsDao = new NewsDaoImpl();
