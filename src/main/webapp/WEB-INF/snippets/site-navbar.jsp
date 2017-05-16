@@ -2,6 +2,6 @@
 <nav id="site-navbar">
 	<ul>
 		<li><a href="<c:url value='/front'/>">Notícias</a></li>
-		<li><a href="<c:url value='/front?command=Edit'/>">Enviar</a></li>			
+		<li><a href="<c:url value='/front?command=Edit'/>">Enviar</a></li>
 	</ul>
 </nav>

@@ -1,29 +1,30 @@
 package colarinhobranco.daoimpl;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 
-import colarinhobranco.dao.NewsDao;
+import colarinhobranco.dao.CommentDao;
+import colarinhobranco.model.Comment;
 import colarinhobranco.model.News;
 import colarinhobranco.util.JPAUtil;
 
-public class NewsDaoImpl implements NewsDao {
+public class CommentDaoImpl implements CommentDao {
 
 	@Override
-	public News save(News news) {
+	public Comment save(Comment commentary) {
 		
 		EntityManager manager = new JPAUtil().getEntityManager();
 		EntityTransaction transaction = manager.getTransaction();
 		
 		try {
 			transaction.begin();
-			manager.persist(news);
+			manager.persist(commentary);
 			manager.flush();
 			transaction.commit();
-			return news;
+			return commentary;
 		} catch (Exception e) {
 			e.printStackTrace();
 			
@@ -38,28 +39,18 @@ public class NewsDaoImpl implements NewsDao {
 		
 	}
 	
-	public News get(Integer id) {
-		
-		EntityManager manager = new JPAUtil().getEntityManager();
-		
-		try {
-			return manager.find(News.class, id);
-		} finally {
-			manager.close();
-		}
-		
-	}
-
-	public List<News> findAll() {
+	@Override
+	public List<Comment> findByNews(News news) {
 		
 		EntityManager manager = new JPAUtil().getEntityManager();
 	
-		try {
-			return manager.createQuery("select n from News n order by n.date desc", News.class).getResultList();
-		} finally {
-			manager.close();
-		}
-				
+		String jpql = "SELECT c FROM Comment c WHERE c.news = :news";
+
+		TypedQuery<Comment> query = manager.createQuery(jpql, Comment.class);
+		query.setParameter("news", news);
+
+		return query.getResultList();
+		
 	}
 
 }

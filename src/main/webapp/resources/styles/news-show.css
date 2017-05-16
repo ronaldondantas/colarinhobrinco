@@ -35,3 +35,13 @@ pre {
 .news li {
 	list-style-type: disc;
 }
+
+#ajaxloader {
+	position: fixed;
+	top: 25px;
+	right: 25px;	
+}
+
+.invisible {
+	display: none;
+}

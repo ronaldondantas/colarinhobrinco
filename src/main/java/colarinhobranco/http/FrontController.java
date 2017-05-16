@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+
 /**
  *
  * @author Neo Figueiredo
@@ -26,7 +27,7 @@ public class FrontController extends HttpServlet {
     protected void process(HttpServletRequest request,
             HttpServletResponse response) throws java.io.IOException {
 
-        request.setCharacterEncoding("UTF-8");
+        //request.setCharacterEncoding("UTF-8");
         
         // Cria um objeto RequestContext usando a estratégia do Map
         Map requestContextMap = new HashMap(request.getParameterMap());
@@ -41,6 +42,8 @@ public class FrontController extends HttpServlet {
             Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE, null, ex);
         }
         Dispatcher dispatcher = new Dispatcher(getServletContext(),request, response);
+        
+       // requestContextMap.put("dispatcher", );
         
         ApplicationControllerImp applicationController = new ApplicationControllerImp(requestContextMap,dispatcher);
         applicationController.getInstance();

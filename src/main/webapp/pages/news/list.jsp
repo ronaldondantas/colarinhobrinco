@@ -23,18 +23,20 @@
 					
 						<h2 class="news-headline-title">
 							<a href="
-								<c:url value='/news/show'>
-									<c:param name='newsId' value='${item.id}' />
-								</c:url>">
+								<c:url value='/front'>
+                                                                        <c:param name='command' value='Show' />
+                                                                        <c:param name='newsId' value='${item.id}' />
+                                                                </c:url>">
 								${item.title}
 							</a>
 						</h2>
 						
 						<a href="
-							<c:url value='/news/show'>
-								<c:param name='newsId' value='${item.id}' />
+							<c:url value='/front'>
+								<c:param name='command' value='Show' />
+                                                                <c:param name='newsId' value='${item.id}' />
 							</c:url>">
-							<img src="${pageContext.request.contextPath}/front?command=Image&util=true&newsId=${item.id}&imageFileName=${item.headlineImage}"
+							<img src="${pageContext.request.contextPath}/image?newsId=${item.id}&imageFileName=${item.headlineImage}"
 								class="news-headline-image" >
 						</a>
 						

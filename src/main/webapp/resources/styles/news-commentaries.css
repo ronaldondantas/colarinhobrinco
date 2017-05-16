@@ -1,5 +1,21 @@
+.commentaries h1 {
+	font-size: 30px;	
+	text-align: center;
+	padding: 15px 0;
+}
+
+.comment {
+	padding: 10px 0;
+	line-height: 1.5;
+}
+
+.comment h2 {
+	font-size: 25px;	
+}
+
 form {
 	font-size: 120%;
+	padding: 20px;
 }
 
 label[for] {
@@ -10,20 +26,19 @@ label[for] ~ label[for] {
 	margin-top: 10px;
 }
 
+input {
+	width: auto;
+}
+
+textarea {
+	width: 100%;	
+}
+
 input, textarea {
-	width: 100%;
 	font-family: inherit;
 	font-size: 110%;
 	padding: .25em .5em;
 	box-sizing: border-box;
-}
-
-input:focus, textarea:focus {
-    background-color: #FFD;
-}
-
-input:invalid, textarea:invalid {
-    border: 3px solid red;
 }
 
 button {

@@ -1,3 +1,3 @@
 <footer id="site-footer">
-	&copy; Caio Holanda Costa 2017
+	&copy; UECE 2017
 </footer>

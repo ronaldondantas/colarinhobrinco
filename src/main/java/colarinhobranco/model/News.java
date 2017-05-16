@@ -1,12 +1,18 @@
 package colarinhobranco.model;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -31,6 +37,9 @@ public class News {
 	
 	@Column(name="content")
 	private String content;
+	
+	@OneToMany(mappedBy="news", cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.EAGER)
+	private List<Comment> comments = new ArrayList<Comment>();
 	
 	public News() { }
 	
@@ -68,13 +77,17 @@ public class News {
 	public String getContent() { return content; }
 
 	public void setContent(String content) { this.content = content; }
+	
+	public List<Comment> getComments() {
+		
+		return Collections.unmodifiableList(this.comments);
+		
+	}
 
 	@Override
 	public String toString() {
-		
-		return "News [id=" + id + ", title=" + title + ", date=" + date + ", headlineContent="
-				+ headlineContent + ", headlineImage=" + headlineImage + ", content=" + content + "]";
-		
+		return "News [id=" + id + ", title=" + title + ", date=" + date + ", headlineContent=" + headlineContent
+				+ ", headlineImage=" + headlineImage + ", content=" + content + ", comments=" + comments + "]";
 	}
 
 }
