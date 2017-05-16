@@ -16,7 +16,7 @@
 		</aside>	
 		<main>
 			<div id="site-content">
-				<form method="post" action="${pageContext.request.contextPath}/news/save" enctype="multipart/form-data">
+				<form method="post" action="${pageContext.request.contextPath}/front?command=Save" enctype="multipart/form-data">
 					<label for="title">Título:</label>
 					<input id="title" name="title" type="text" placeholder="Título" maxlength="75" required autofocus>
 					

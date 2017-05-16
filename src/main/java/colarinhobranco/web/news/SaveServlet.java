@@ -1,5 +1,6 @@
 package colarinhobranco.web.news;
 
+import colarinhobranco.http.FrontCommand;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -9,65 +10,80 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.servlet.ServletException;
+//import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import colarinhobranco.dao.NewsDao;
 import colarinhobranco.daoimpl.NewsDaoImpl;
 import colarinhobranco.model.News;
+//import javax.servlet.ServletContext;
+//import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-@SuppressWarnings("serial")
-@WebServlet("/news/save")
+//@SuppressWarnings("serial")
+
 @MultipartConfig
-public class SaveServlet extends HttpServlet {
+public class SaveServlet extends FrontCommand {
 	
 	private NewsDao newsDao = new NewsDaoImpl();
 	
 	private SimpleDateFormat dateParser = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
 	private String imagesFolder; 
 	
-	@Override
-	public void init() throws ServletException {
-		 
-		setImagesFolder(getServletContext().getInitParameter("images-folder"));
-		
-	}	
+        public SaveServlet(){
+            this.target = "news/show";
+        }
+        
+//        @Override
+//	public void init(ServletContext servletContext,
+//      HttpServletRequest servletRequest,
+//      HttpServletResponse servletResponse){
+//		 super.init(servletContext, servletRequest, servletResponse);
+//		setImagesFolder(context.getInitParameter("images-folder"));
+//		
+//	}	
 	
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-		throws ServletException, IOException {
+	public void process() throws IOException{
+		//RequestDispatcher dispatcher = map.get
+		//mapdispatcher.request.setCharacterEncoding("UTF-8");
 		
-		request.setCharacterEncoding("UTF-8");
-		
-		String title = request.getParameter("title");
-		String headlineContent = request.getParameter("headline-content");
-		String content = request.getParameter("content");
-		Part headlineImage = request.getPart("headline-image");
+		String[] title = (String[]) map.get("title");
+		String[] headlineContent = (String[]) map.get("headline-content");
+		String[] content = (String[]) map.get("content");
+                //String[] strHeadlineImage = (String[]);
+		Part headlineImage = (Part) map.get("headline-image");
 		
 		Date date = null;
 		
 		try {
-			date = dateParser.parse(request.getParameter("date"));
+                    String[] aData = (String[])map.get("date");
+                    date = dateParser.parse(aData[0]);
 		} catch (ParseException pe) {
-			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);			
+			this.dispatcher.response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);			
 		}
+                
+                System.out.println(title[0]);
+                System.out.println(date);
+                System.out.println(headlineContent[0]);
+                System.out.println(headlineImage.getSubmittedFileName());
+                System.out.println(content[0]);
 		
-		News news = new News(title, date, headlineContent, headlineImage.getSubmittedFileName(), content);
+                
+                
+		News news = new News(title[0], date, headlineContent[0], headlineImage.getSubmittedFileName(), content[0]);
 		
 		if (newsDao.save(news) != null) {
 			saveHeadlineImage(headlineImage, news.getId());
 		}
 		
-		request.setAttribute("news", news);
+		this.dispatcher.request.setAttribute("news", news);
 		
-		request.getRequestDispatcher("/pages/news/show.jsp").forward(request, response);
+		//request.getRequestDispatcher("/pages/news/show.jsp").forward(request, response);
+                //forward();
 		
-		request.getRequestDispatcher("/pages/news/show.jsp").forward(request, response);			
+		//request.getRequestDispatcher("/pages/news/show.jsp").forward(request, response);			
 				
 	}
 	
@@ -81,6 +97,8 @@ public class SaveServlet extends HttpServlet {
 			File imageFolder = new File(imagesFolder, String.valueOf(newsId));
 			imageFolder.mkdir();
 			fileName = filePart.getSubmittedFileName();
+                        System.out.println(fileName);
+                        
 			is = filePart.getInputStream();
 			os = new FileOutputStream(new File(imageFolder, fileName));
  

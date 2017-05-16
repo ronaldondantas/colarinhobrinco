@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
-  <display-name>colarinhobranco</display-name>
-  <welcome-file-list>
-    <welcome-file>news/list</welcome-file>
-  </welcome-file-list>
-  <context-param>
-    <param-name>images-folder</param-name>
-    <param-value>/Users/caiohc/dev/estudo/colarinhobranco_images</param-value>
-  </context-param>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>colarinhobranco</servlet-name>
+        <servlet-class>colarinhobranco.http.FrontController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>colarinhobranco</servlet-name>
+        <url-pattern>/front</url-pattern>
+    </servlet-mapping>
+    <context-param>
+        <param-name>images-folder</param-name>
+        <param-value>D:\0_ESTUDO\colarinhobranco\src\main\resources\colarinhobranco_images</param-value>
+    </context-param>
 </web-app>

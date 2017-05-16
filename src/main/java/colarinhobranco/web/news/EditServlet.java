@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package colarinhobranco.web.news;
 
 import colarinhobranco.http.FrontCommand;
@@ -6,17 +11,21 @@ import colarinhobranco.daoimpl.NewsDaoImpl;
 import java.io.IOException;
 import javax.servlet.ServletException;
 
-//@SuppressWarnings("serial")
-//@WebServlet(urlPatterns="/news/list")
-public class ListServlet extends FrontCommand {
-
+/**
+ *
+ * @author Neo Figueiredo
+ */
+public class EditServlet extends FrontCommand {
+	
     private NewsDao newsDao = new NewsDaoImpl();
-    public ListServlet(){
-        this.target = "news/list";
+    
+    public EditServlet(){
+        this.target = "news/edit";
     }
+    
     @Override
     public void process() throws ServletException, IOException {
-        this.dispatcher.request.setAttribute("news", newsDao.findAll()); 
+    
     }
 	
 }
